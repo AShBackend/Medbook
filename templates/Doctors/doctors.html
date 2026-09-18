@@ -1,0 +1,49 @@
+{% extends "base.html" %}{% load static %}{% block title %}Doctors{% endblock title %}{% block content %}
+<main class="container py-5">
+  <div class="page-head">
+    <span>MedBook</span>
+    {% if speciality %}
+      <h1>{{ speciality }}</h1><p>پزشکان متخصص این دسته‌بندی را مشاهده می‌کنی.</p>
+    {% else %}
+      <h1>پزشکان</h1><p>پزشک موردنظرت را بر اساس تخصص و نام پیدا کن.</p>
+    {% endif %}
+  </div>
+  <div class="filter-bar p-3 bg-white rounded-4 shadow-sm mb-4">
+    <form method="GET">
+      <div class="row g-2">
+        <div class="col-lg-7 col-md-7 col-7">
+          <input type="search" name="q" value="{{ query }}" class="form-control" placeholder="جستجوی نام پزشک...">
+          <button type="submit" class="btn btn-primary">جستجو</button> 
+        </div>
+        <div class="col-lg-4 col-md-4 col-4">
+          <select name="speciality" id="specialty" class="form-select" onchange="this.form.submit()">
+            <option value="">همه تخصص‌ها</option>
+            <option value="متخصص قلب و عروق"{% if speciality == "متخصص قلب و عروق" %}selected{% endif %}>قلب</option>
+            <option value="متخصص پوست و مو"{% if speciality == "متخصص پوست و مو" %}selected{% endif %}>پوست</option>
+            <option value="متخصص کودکان"{% if speciality == "متخصص کودکان" %}selected{% endif %}>کودکان</option>
+            <option value="دندان پزشکی"{% if speciality == "دندان پزشکی" %}selected{% endif %}>دندان</option>
+            <option value="جراح مغز و اعصاب"{% if speciality == "جراح مغز و اعصاب" %}selected{% endif %}>مغز و اعصاب</option>
+            <option value="متخصص روان شناسی"{% if speciality == "متخصص روان شناسی" %}selected{% endif %}>روان شناسی</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="Doc row g-4">
+    {% for doctor in Doctors %}
+    <div class="col-lg-4 col-md-6 col-12">
+      <div class="doctor-card">
+        <img src="{{ doctor.Profile.url }}" class="Doctor_img">
+        <p>{{ doctor.City }}</p>
+        <h4>{{ doctor.Fullname }}</h4>
+        <p>{{ doctor.speciality.Name }}</p>
+        <p>⭐{{ doctor.Score }} 👤{{ doctor.Pattients }}</p>
+        <a href="{% url 'Doctors:Profiles' doctor.pk %}" class="btn btn-primary">مشاهده پروفایل</a>
+      </div>
+    </div>
+    {% empty %}
+      <div class="text-center py-5"><h4>پزشکی پیدا نشد 😕</h4><p class="text-muted">برای این جستجو پزشکی پیدا نشد.</p></div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock content %}

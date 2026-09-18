@@ -1,0 +1,47 @@
+{% extends "base.html" %}{% load static %}{% block title %}Doctor Panel{% endblock title %}{% block content %} 
+<main class="container py-5">
+  <div class="doctor-profile bg-white rounded-5 shadow-sm p-4">
+    <div class="row align-items-center g-4">
+      <div class="col-md-3 text-center">
+        <img class="profile-avatar" src="{{ doctor.Profile.url }}">
+        <div class="rating mt-3"><i class="bi bi-star-fill"></i>{{ doctor.Score }}</div>
+      </div>
+      <div class="col-md-6">
+        <span class="specialty">{{ doctor.speciality.Name }}</span>
+        <h1 class="fw-bold mt-2">{{ doctor.Fullname }}</h1>
+        <p class="text-secondary">دارای بورد شخصی. پزشک مخصوص Medbook</p>
+        <div class="d-flex flex-wrap gap-3">
+          <span><i class="bi bi-geo-alt"></i>{{ doctor.City }}</span
+          ><span><i class="bi bi-award"></i>{{ doctor.Exprince_Years }}</span
+          ><span><i class="bi bi-chat"></i>{{ doctor.Pattients }}</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <a
+          href="{% url "Doctors:Appointment" %}"
+          class="btn btn-primary btn-lg w-100 rounded-3"
+          >رزرو نوبت</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="row g-4 mt-2">
+    <div class="col-lg-8">
+      <div class="content-card">
+        <h4>درباره پزشک</h4>
+        <p>
+          {{ doctor.Bio }}
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="content-card">
+        <h5>اطلاعات مطب</h5>
+        <p><i class="bi bi-geo-alt text-primary"></i>{{ doctor.Address }}</p>
+        <p><i class="bi bi-clock text-primary"></i> شنبه تا چهارشنبه</p>
+        <p><i class="bi bi-telephone text-primary"></i>{{ doctor.Phone_Number }}</p>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %} 

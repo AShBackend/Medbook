@@ -1,0 +1,28 @@
+{% extends "base.html" %}{% load static %}{% block title %}Contact{% endblock title %}{% block content %} 
+<main class="container py-5">
+  <div class="page-head">
+    <span>Contact</span>
+    <h1>با ما در تماس باش</h1>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-5">
+      <div class="content-card">
+        <h4>اطلاعات تماس</h4>
+        <p>📍 تهران، خیابان ولیعصر</p>
+        <p>☎ 021-12345678</p>
+        <p>✉ hello@medbook.ir</p>
+      </div>
+    </div>
+    <div class="card shadow Formcont p-4 rounded mx-auto col-lg-7">
+      <form method="POST">
+        {% csrf_token %}
+          <div class="mb-3">{{ form.Name }}</div>
+          <div class="mb-3">{{ form.Email }}</div>
+          <div class="mb-3">{{ form.Subject }}</div>
+          <div class="mb-3">{{ form.Text }}</div>
+        <button class="btn btn-primary px-5">ارسال پیام</button>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock content %}

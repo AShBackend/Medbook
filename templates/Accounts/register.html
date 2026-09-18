@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% load static %}{% block title %} Register {% endblock title %}{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+  <div class="auth-card">
+    <a href="{% url "Home:Home" %}" class="brand">♥ MedBook</a>
+    <h2>ساخت حساب جدید</h2>
+    <p class="text-secondary">چند قدم تا تجربه بهتر.</p>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="mb-3">{{ form.username }}</div>
+      <div class="mb-3">{{ form.email }}</div>
+      <div class="mb-3">{{ form.password }}</div>
+      <button class="btn btn-primary w-100 btn-lg">ساخت اکانت</button>
+    </form>
+    <p class="mt-4 text-center">
+      قبلاً ثبت‌نام کردی؟ <a href="{% url "Accounts:Login" %}">ورود</a>
+    </p>
+  </div>
+</div>
+{% endblock content %}

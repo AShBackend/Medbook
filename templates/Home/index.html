@@ -1,0 +1,84 @@
+{% extends "base.html" %}{% load static %}{% block title %}Medbook ~ سامانه نوبت دهی پزشکان{% endblock title %}{% block content %}
+<header class="hero">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="badge bg-primary-subtle text-primary mb-3 px-3 py-2"
+          >سلامتی، ساده‌تر از همیشه</span
+        >
+        <h1 class="display-4 fw-bold lh-base">
+          پزشک مناسب خودت را <span class="text-primary">پیدا کن.</span>
+        </h1>
+        <p class="lead text-secondary my-4">
+          پزشکان متخصص را جستجو کن، پروفایلشان را ببین و در چند دقیقه نوبت بگیر.
+        </p>
+        <div class="search-box bg-white p-2 rounded-4 shadow-lg">
+          <form method="GET" action="{% url "Home:Home" %}" class="d-flex gap-2">
+            <input class="form-control border-0" type="search" name="q" value="{{ query }}" placeholder="نام پزشک یا تخصص..."/>
+            <button type="submit" class="btn btn-primary rounded-3">جستجو</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center">
+        <div class="hero-card">
+          <img class="Hero_img" src="{% static "Images/Medbook.ico" %}">
+          <div class="floating-stat"><b>+500</b><small>پزشک متخصص</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="py-5">
+  <div class="container">
+    <div class="section-title">
+      <h2>دسته‌بندی‌های محبوب</h2>
+      <p>تخصص موردنظرت را سریع پیدا کن</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">
+        <a class="category-card" href="{% url "Doctors:Doctor" %}?speciality=متخصص قلب و عروق"
+          ><i class="bi bi-heart-pulse"></i><b>قلب و عروق</b></a>
+      </div>
+      <div class="col-6 col-md-3">
+        <a class="category-card" href="{% url "Doctors:Doctor" %}?speciality=متخصص پوست و مو"
+          ><i class="bi bi-stars"></i><b>پوست و مو</b></a>
+      </div>
+      <div class="col-6 col-md-3">
+        <a class="category-card" href="{% url "Doctors:Doctor" %}?speciality=متخصص کودکان"
+          ><i class="bi bi-emoji-smile"></i><b>کودکان</b></a>
+      </div>
+      <div class="col-6 col-md-3">
+        <a class="category-card"href="{% url "Doctors:Doctor" %}?speciality=دندان پزشکی"
+          ><i class="bi bi-emoji-smile-upside-down"></i><b>دندانپزشکی</b></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h2>پزشکان برتر</h2>
+        <p class="text-secondary mb-0">انتخابی از پزشکان MedBook</p>
+      </div>
+      <a href="{% url "Doctors:Doctor" %}" class="btn btn-outline-primary rounded-pill">مشاهده همه</a>
+    </div>
+    <div class="Doc row g-4">
+      {% for doctor in doctors %}
+        <div class=" col-lg-4 col-md-6 col-12">
+          <div class="doctor-card">
+            <img src="{{ doctor.Profile.url }}" class="Doctor_img">
+            <p>{{ doctor.City }}</p>
+            <h4>{{ doctor.Fullname }}</h4>
+            <p>{{ doctor.speciality.Name }}</p>
+            <p>⭐{{ doctor.Score }} &nbsp; 👤{{ doctor.Pattients }}</p>
+            <a href="{% url "Doctors:Profiles" doctor.pk %}" class="btn btn-primary">مشاهده پروفایل</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

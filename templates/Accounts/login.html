@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% load static %}{% block title %} Login {% endblock title %}{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+  <div class="mt-4 auth-card">
+    <a href="{% url "Home:Home" %}" class="brand">♥ MedBook</a>
+    <h2>خوش برگشتی 👋</h2>
+    <p class="text-secondary">برای ادامه وارد حساب خود شو.</p>
+    <form method="POST">
+      {% csrf_token %}
+        <div class="mb-3">
+          {{ form.username }}
+        </div>
+        <div class="mb-3">
+          {{ form.password }}
+        </div>
+      <button class="btn btn-primary w-100 btn-lg" type="submit">ورود</button>
+    </form>
+    <p class="mt-4 text-center">
+      حساب نداری؟ <a href="{% url "Accounts:Register" %}">ثبت‌نام کن</a>
+    </p>
+  </div>
+</div>
+{% endblock content %}

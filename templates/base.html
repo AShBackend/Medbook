@@ -1,0 +1,160 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    {% comment %} Meta Tags {% endcomment %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% comment %} Icons {% endcomment %}
+    <link rel="icon" href="{% static "Images/Medbook.ico" %}">
+
+    {% comment %} Bootstrap {% endcomment %}
+    <link rel="stylesheet" href="{% static "Vendor/Icons/bootstrap-icons.min.css" %}">
+    <link rel="stylesheet" href="{% static "Vendor/Bootstrap/CSS/bootstrap.min.css" %}">
+
+    {% comment %} CSS {% endcomment %}
+    <link rel="stylesheet" href="{% static "CSS/style.css" %}">
+
+    {% comment %} Title {% endcomment %}
+    <title>{% block title %}{% endblock title %}</title>
+  </head>
+  <body dir="rtl">
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary fs-3" href="{% url "Home:Home" %}">
+          <i class="bi bi-heart-pulse-fill"></i>MedBook
+        </a>
+        <button class="navbar-toggler d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+          <i class="bi bi-list fs-1"></i>
+        </button>
+          <div class="collapse navbar-collapse" id="nav">
+            <ul class="navbar-nav ms-auto gap-lg-2">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "Home:Home" %}">خانه</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "Doctors:Doctor" %}">پزشکان</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "Home:Services" %}">خدمات</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "Home:About" %}">درباره ما</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "Home:Contact" %}">تماس</a>
+              </li>
+            </ul>
+            {% if user.is_authenticated %}
+            <div class="dropdown">
+              <button class="btn btn-outline-primary" type="button" data-bs-toggle="dropdown">
+               <i class="bi bi-person-fill">پنل کاربری</i>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url "Accounts:Profile" %}">پروفایل من</a></li>
+                <li><a class="btn btn-danger dropdown-item" href="{% url "Accounts:Logout" %}">خروج</a></li>
+              </ul>
+            </div>
+            {% else %}
+            <div class="d-flex align-items-center">
+              <a href="{% url "Accounts:Login" %}" class="btn btn-primary rounded-pill px-4">ورود / ثبت‌نام</a>
+            {% endif %}
+              <button class="theme-toggle" type="button" aria-label="تغییر حالت نمایش">
+                <i class="bi bi-moon-stars-fill"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <header class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
+        <div class="offcanvas-header pb-2">
+          <h1 class="offcanvas-title text-primary"><i class="bi bi-heart-pulse-fill">MedBook</i></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <hr>
+          <div class="offcanvas-body">
+            <div class="d-flex flex-column gap-3 p-0">
+              <ul class="navbar-nav p-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "Home:Home" %}">خانه</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "Doctors:Doctor" %}">پزشکان</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "Home:Services" %}">خدمات</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "Home:About" %}">درباره ما</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "Home:Contact" %}">تماس</a>
+                </li>
+              <ul>
+              <hr>
+                {% if user.is_authenticated %}
+              <div class="dropdown">
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="dropdown">
+                  <i class="bi bi-person-fill">پنل کاربری</i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url "Accounts:Profile" %}">پروفایل من</a></li>
+                  <li><a class="btn btn-danger dropdown-item" href="{% url "Accounts:Logout" %}">خروج</a></li>
+                </ul>
+              </div>
+                {% else %}
+              <div class="d-flex align-items-center">
+                <a href="{% url "Accounts:Login" %}" class="btn btn-primary rounded-pill px-4">ورود / ثبت‌نام</a>
+                {% endif %}
+                <button class="theme-toggle" type="button" aria-label="تغییر حالت نمایش">
+                  <i class="bi bi-moon-stars-fill"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+      </header>      
+
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-info">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+
+    {% block content %}{% endblock content %}
+
+    <footer class="footer mt-5">
+      <div class="container py-5">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <h4 class="text-white">MedBook</h4>
+            <p>رزرو آنلاین نوبت پزشکان، سریع و آسان.</p>
+          </div>
+          <div class="col-md-4">
+            <h6>لینک‌های سریع</h6>
+            <a href="{% url "Doctors:Doctor" %}">پزشکان</a>
+            <a href="{% url "Home:Services" %}">خدمات</a>
+            <a href="{% url "Home:Contact" %}">تماس با ما</a>
+          </div>
+          <div class="col-md-4">
+            <h6>ما را دنبال کنید</h6>
+            <div class="socials">
+              <i class="bi bi-instagram"></i><i class="bi bi-telegram"></i><i class="bi bi-github"></i>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <small>© 2026 MedBook — تمامی حقوق محفوظ است.</small>
+      </div>
+    </footer>
+
+    {% comment %} Javascript {% endcomment %}
+    <script src="{% static "Vendor/Bootstrap/JS/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "JS/script.js" %}"></script>
+    
+  </body>
+</html>

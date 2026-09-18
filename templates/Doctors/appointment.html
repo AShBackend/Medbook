@@ -1,0 +1,23 @@
+{% extends "base.html" %}{% load static %}{% block title %}Appointment{% endblock title %}{% block content %}
+<main class="container py-5">
+  <div class="page-head Form">
+    <span>Appointment</span>
+    <h1>رزرو نوبت</h1>
+    <p>زمان مناسب خودت را انتخاب کن.</p>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <form method="POST" class="content-card">
+        {% csrf_token %}
+        <div class="mb-3">{{ form.Doctors }}</div>
+        <div class="mb-3">{{ form.Date_Time }}</div>
+        <div class="mb-3">{{ form.Reason }}</div>
+        <button type="submit" class="btn btn-primary mt-3">
+          ثبت نوبت
+        </button>
+     </form>
+    </div>
+  </div>
+</main>
+
+{% endblock content %}
