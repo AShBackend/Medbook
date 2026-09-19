@@ -56,3 +56,8 @@ def Logout(request):
 def My_Profile(request):
     appointments = Reserver.objects.filter(Name=request.user)
     return render(request, "Accounts/profile.html", {"appointments": appointments})
+
+# ___________________________________________________________________________________________
+
+def custom_404(request, exception):
+    return render(request, "Accounts/404.html", status=404)

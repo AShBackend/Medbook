@@ -1,10 +1,9 @@
-{% extends "base.html" %}{% load static %}{% block title %} Page not fount {% endblock
-title %}{% block content %}
-<main class="error-page">
-  <div>
+{% extends "base.html" %}{% load static %}{% block title %}404 | صفحه پیدا نشد{% endblock title %}{% block content %}
+<main class="card shadow error-page">
+  <div class="text-center">
     <div class="display-1 fw-bold text-primary">404</div>
-    <h2>صفحه پیدا نشد 😅</h2>
-    <p class="text-secondary">ممکن است آدرس اشتباه باشد.</p>
+    <h2> صفحه پیدا نشد 😅</h2>
+    <p class="text-secondary">ممکن است آدرس وارد شده اشتباه باشد.</p>
     <a href="{% url "Home:Home" %}" class="btn btn-primary">بازگشت به خانه</a>
   </div>
 </main>

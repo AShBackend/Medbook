@@ -43,5 +43,3 @@ def Appointment(request):
     else:
         form = ReserverForm()
     return render(request, "Doctors/appointment.html", {"form": form})
-
-
