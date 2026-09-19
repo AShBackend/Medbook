@@ -4,7 +4,6 @@
   A Django-based doctor appointment booking platform built as a portfolio project.
 </p>
 
-## Web Site Link:
 <h1 align="center">
   <a href="https://medbook.com">
     🌐 Live Demo
