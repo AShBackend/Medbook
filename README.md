@@ -7,7 +7,7 @@
 ## Web Site Link:
 <p align="center">
   <a href="https://medbook.com">
-    <img src="https://img.shields.io/badge/Live-Demo-success?style=for-the-badge" alt="Live Demo">
+    🌐 Live Demo
   </a>
 </p>
 
