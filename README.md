@@ -4,6 +4,13 @@
   A Django-based doctor appointment booking platform built as a portfolio project.
 </p>
 
+## Web Site Link:
+<p align="center">
+  <a href="https://medbook.com">
+    <img src="https://img.shields.io/badge/Live-Demo-success?style=for-the-badge" alt="Live Demo">
+  </a>
+</p>
+
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.14-blue?logo=python" alt="Python">
   <img src="https://img.shields.io/badge/Django-6.1-green?logo=django" alt="Django">
