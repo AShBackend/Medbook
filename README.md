@@ -5,7 +5,7 @@
 </p>
 
 <h1 align="center">
-  <a href="https://medbookk.com">
+  <a href="https://meedbook.com">
     🌐 Live Demo
   </a>
 </h1>
