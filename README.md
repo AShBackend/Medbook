@@ -5,11 +5,11 @@
 </p>
 
 ## Web Site Link:
-<p align="center">
+<h1 align="center">
   <a href="https://medbook.com">
     🌐 Live Demo
   </a>
-</p>
+</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.14-blue?logo=python" alt="Python">
